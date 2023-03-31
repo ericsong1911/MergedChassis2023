@@ -5,7 +5,9 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.Autos;
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -27,6 +29,11 @@ public class RobotContainer {
   private final IntakeArm m_intakeArm = new IntakeArm();
   private final IntakeWheels m_intakeWheels = new IntakeWheels();
 
+  //Autonomous stuffs
+  private final Command m_moveForwardAuto = Autos.moveForwardAuto(m_drive);
+
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
+
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController1 =
       new CommandXboxController(OperatorConstants.kDriverControllerPort1);
@@ -36,6 +43,9 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
+
+    //Autonomous code
+    m_chooser.setDefaultOption("Move Forward", m_moveForwardAuto);
   }
 
   private void configureBindings() {
@@ -73,7 +83,7 @@ public class RobotContainer {
     }
     
     public Command getAutonomousCommand() {
-        return m_drive.driveDistanceCommand(36, 0.5);
+        return m_chooser.getSelected();
     }
 
   }
