@@ -27,6 +27,7 @@ public final class Constants {
     public static final int intakeArmRight = 27;
     public static final int intakeWheels = 28;
   }
+
   public static class IntakeArmConstants {
     public static final boolean kMotorLeftInverted = false;
     public static final boolean kMotorRightInverted = true;
@@ -63,6 +64,40 @@ public final class Constants {
     public static final double kCubeGrabSpeed = 0.8;
     public static final double kCubeReleaseSpeed = -0.5;
 
+  }
+  public static class DriveTrainConstants {
+    public static final boolean kLeftInverted = true;
+    public static final boolean kRightInverted = false;
+
+    public static final int kCurrentLimit = 55;
+
+    public static final double kTurningScale = 0.5;
+
+    public static final double kWheelDiameter = 6.0; // in inches
+    public static final double _gearRaio = (11/52) * (30/68); // == 0.0933 = 1/10.715
+    // kPositionFactor converts # of motor rotations to distance travelled
+    public static final double kPositionFactor = _gearRaio * Math.PI * kWheelDiameter;
+    // kVelocityFactor converts # of motor RPM to inches/sec
+    public static final double kVelocityFactor = kPositionFactor / 60;
+  }
+  public static class ElevatorConstants {
+    public static final boolean kMotorLeft_inverted = false;
+    public static final boolean kMotorRight_inverted = true;
+    public static final int kCurrentLimit = 40;
+    public static final double kElevatorGearRatio = 1 / (5 * 4); // 5:1 * 4:1
+    // RevRobotics 16T Sprocket pitch size is 1.29 inches
+    // https://www.revrobotics.com/25-sprockets/
+    // https://www.revrobotics.com/content/docs/REV-21-2016-DR.pdf
+    // kPositionFactor converts #motor-rotations into #inches travelled by the Elevator
+    public static final double kPositionFactor = Math.PI * 1.29 * kElevatorGearRatio;
+    // kVelocityFactor converts Motor-RPM (Revolutions Per Minute) into  inches-per-second
+    public static final double kVelocityFactor = kPositionFactor / 60;
+
+    public static final double kMinTravelInInches = 0;
+    public static final double kMaxTravelInInches = 36; // ToDo:  Verify with experimentation
+    public static final double kToleranceInInches = 1.8; // 5% of travel length
+    public static final double kElevatorSpeedUp = 0.7;
+    public static final double kElevatorSpeedDown = -0.3;
   }
   public static class OperatorConstants {
     public static final int kDriverControllerPort1 = 0;
