@@ -31,6 +31,7 @@ public class RobotContainer {
 
   //Autonomous stuffs
   private final Command m_moveForwardAuto = Autos.moveForwardAuto(m_drive);
+  private final Command m_chargingStationAuto = Autos.chargingStationAuto(m_drive);
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -46,6 +47,7 @@ public class RobotContainer {
 
     //Autonomous code
     m_chooser.setDefaultOption("Move Forward", m_moveForwardAuto);
+    m_chooser.addOption("Dock at Charging Station", m_chargingStationAuto);
   }
 
   private void configureBindings() {
