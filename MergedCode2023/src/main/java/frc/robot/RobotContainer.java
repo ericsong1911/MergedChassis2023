@@ -69,10 +69,10 @@ public class RobotContainer {
           MathUtil.applyDeadband(m_driverController.getRightX()*Constants.DriveTrainConstants.kTurningScale, Constants.OperatorConstants.kDriveDeadband))
       , m_drive)
     );
+    }
     
     public Command getAutonomousCommand() {
-        return;
+        return m_drive.driveDistanceCommand(36, 0.3);
     }
 
   }
-}
