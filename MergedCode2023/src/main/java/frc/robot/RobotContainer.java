@@ -5,8 +5,9 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autos;
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.subsystems.IntakeArm;
@@ -65,14 +66,14 @@ public class RobotContainer {
     m_drive.setDefaultCommand(new RunCommand(
       () -> 
         m_drive.driveArcade(
-          MathUtil.applyDeadband(- m_driverController.getLeftY(), Constants.OperatorConstants.kDriveDeadband),
-          MathUtil.applyDeadband(m_driverController.getRightX()*Constants.DriveTrainConstants.kTurningScale, Constants.OperatorConstants.kDriveDeadband))
+          MathUtil.applyDeadband(- m_driverController1.getLeftY(), Constants.OperatorConstants.kDriveDeadband),
+          MathUtil.applyDeadband(m_driverController1.getRightX()*Constants.DriveTrainConstants.kTurningScale, Constants.OperatorConstants.kDriveDeadband))
       , m_drive)
     );
     }
     
     public Command getAutonomousCommand() {
-        return m_drive.driveDistanceCommand(36, 0.3);
+        return m_drive.driveDistanceCommand(36, 0.5);
     }
 
   }
