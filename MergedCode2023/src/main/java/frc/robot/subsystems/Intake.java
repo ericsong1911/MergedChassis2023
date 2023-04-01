@@ -52,7 +52,7 @@ public class Intake extends SubsystemBase {
     
       public boolean intakeIsAtPosition(double position) {
         double curPosition = m_encoder.getPosition() / 2;
-        return (Math.abs(curPosition - position) < IntakeConstants.kToleranceInInches); //TODO: Verify math
+        return (Math.abs(curPosition - position) < IntakeConstants.kToleranceInInches);
       }
     
       public CommandBase out() {
