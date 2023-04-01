@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.subsystems.IntakeArm;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeWheels;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.DriveTrain;
@@ -27,7 +27,7 @@ public class RobotContainer {
   //Initialize different subsystems
   private final DriveTrain m_drive = new DriveTrain();
   private final Elevator m_elevator = new Elevator();
-  private final IntakeArm m_intakeArm = new IntakeArm();
+  private final Intake m_intake = new Intake();
   private final IntakeWheels m_intakeWheels = new IntakeWheels();
 
   //Autonomous commands
@@ -55,8 +55,8 @@ public class RobotContainer {
     new Trigger(m_elevator::elevatorIsNotSafe)
         .onTrue(m_elevator.stopCmd());
     
-    new Trigger(m_intakeArm::armIsNotsafe)
-        .onTrue(m_intakeArm.stopCmd());
+    new Trigger(m_intake::intakeIsNotSafe)
+        .onTrue(m_intake.stopCmd());
     
     //TODO: Remap button bindings to be in line with document. (TRIGGERS ARE CODED DIFFERENTLY)
     m_driverController1.b()
@@ -68,21 +68,6 @@ public class RobotContainer {
     
     m_driverController1.rightBumper()
       .onTrue(m_drive.driveToChargeStationCmd(0.5));
-      
-    m_driverController2.b()
-      .whileTrue(m_intakeArm.turnUp())
-      .onFalse(m_intakeArm.stopCmd());
-    m_driverController2.a()
-      .whileTrue(m_intakeArm.turnDown())
-      .onFalse(m_intakeArm.stopCmd());
-    m_driverController2.x()
-      .onTrue(m_elevator.setHeight(0))
-      .onTrue(m_intakeArm.rotateToAngle(0))
-      .onTrue(m_intakeWheels.grabCone());
-    m_driverController2.y()
-      .onTrue(m_elevator.setHeight(0))
-      .onTrue(m_intakeArm.rotateToAngle(0))
-      .onTrue(m_intakeWheels.grabCube());
 
     //TODO: Map joystick controls to other components of the robot
     m_drive.setDefaultCommand(new RunCommand(

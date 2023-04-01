@@ -23,8 +23,7 @@ public final class Constants {
     public static final int elevatorLeft = 21;
     public static final int elevatorRight = 22;
     public static final int slider = 23;
-    public static final int intakeArmLeft = 26;
-    public static final int intakeArmRight = 27;
+    public static final int intakeArm = 26;
     public static final int intakeWheels = 28;
   }
 
@@ -51,6 +50,11 @@ public final class Constants {
     public static final double kArmPickupFromLoadingStation = 0.3; // To be changed after testing
 
   }
+
+  public static class IntakeConstants {
+    public static final boolean kMotorInverted = false;
+  }
+
   public static class IntakeWheelsConstants {
     public static final boolean kWheelsInverted = false;
     public static final int kCurrentLimit = 30;
