@@ -4,8 +4,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.math.util.Units;
-
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -27,32 +25,24 @@ public final class Constants {
     public static final int intakeWheels = 28;
   }
 
-  public static class IntakeArmConstants {
-    public static final boolean kMotorLeftInverted = false;
-    public static final boolean kMotorRightInverted = true;
-    public static final int kCurrentLimit = 40;
-    // We want 1 rotations of motor = 6 degrees of arm
-    // => 1 m = 6/360 a => a/m = 360/6 = 60
-    public static final double kArmGearRatio = 1 / (5 * 4 * 4); // 5:1 * 4:1 * 64T:16T
-    // kPostionFactor converts #MotorRotations to #ArmRadians
-    public static final double kPositionFactor = Units.rotationsToRadians(kArmGearRatio);
-    // kVelocityFactor converts #MotorRevolutionsPerMinute to #ArmRadianPerSecond
-    public static final double kVelocityFactor = Units.rotationsPerMinuteToRadiansPerSecond(kArmGearRatio);
-    public static final double kArmFreeSpeed = 5676.0 * kVelocityFactor;
-    public static final double kArmUpSpeed = 0.7;
-    public static final double kArmDownSpeed = -0.3;
-    public static final double kArmLowerLimitDeg = 45; // in degrees; 0 degres => competely folded
-    public static final double kArmUpperLimitDeg = 300;  // in degrees; 0 degres => competely folded
-    // Convert the above degrees values to # of Radians
-    public static final double kArmLowerLimit = Units.degreesToRadians(kArmLowerLimitDeg);
-    public static final double kArmUpperLimit = Units.degreesToRadians(kArmUpperLimitDeg);
-    public static final double kToleranceRadians = Units.degreesToRadians(5); // 5 degree tolerance
-    public static final double kArmPickupFromLoadingStation = 0.3; // To be changed after testing
-
-  }
-
   public static class IntakeConstants {
     public static final boolean kMotorInverted = false;
+    public static final int kCurrentLimit = 40;
+    // **************************************************************
+    //  IMPORTANT! TODO: CHANGE GEAR RATIOS/VERIFY SAFE DISTANCE
+    // **************************************************************
+    public static final double kIntakeGearRatio = 1;
+    public static final double kPositionFactor = Math.PI * 1.29 * kIntakeGearRatio;
+    // kVelocityFactor converts Motor-RPM (Revolutions Per Minute) into  inches-per-second
+    public static final double kVelocityFactor = kPositionFactor / 60;
+
+    public static final double kMinTravelInInches = 0;
+    public static final double kMaxTravelInInches = 36;
+    public static final double kToleranceInInches = 1; //TODO: Change to 5% of travel length
+
+    public static final double kIntakeSpeedIn = -0.5;
+    public static final double kIntakeSpeedOut = 0.5;
+
   }
 
   public static class IntakeWheelsConstants {
@@ -69,6 +59,7 @@ public final class Constants {
     public static final double kCubeReleaseSpeed = -0.5;
 
   }
+
   public static class DriveTrainConstants {
     public static final boolean kLeftInverted = true;
     public static final boolean kRightInverted = false;
@@ -84,10 +75,12 @@ public final class Constants {
     // kVelocityFactor converts # of motor RPM to inches/sec
     public static final double kVelocityFactor = kPositionFactor / 60;
   }
+
   public static class ElevatorConstants {
     public static final boolean kMotorLeft_inverted = false;
     public static final boolean kMotorRight_inverted = true;
     public static final int kCurrentLimit = 40;
+    //TODO: Check gear ratio here, changes were made to the robot
     public static final double kElevatorGearRatio = 1 / (5 * 4); // 5:1 * 4:1
     // RevRobotics 16T Sprocket pitch size is 1.29 inches
     // https://www.revrobotics.com/25-sprockets/
@@ -98,11 +91,12 @@ public final class Constants {
     public static final double kVelocityFactor = kPositionFactor / 60;
 
     public static final double kMinTravelInInches = 0;
-    public static final double kMaxTravelInInches = 36; // ToDo:  Verify with experimentation
+    public static final double kMaxTravelInInches = 36; // TODO:  Verify with experimentation
     public static final double kToleranceInInches = 1.8; // 5% of travel length
     public static final double kElevatorSpeedUp = 0.7;
     public static final double kElevatorSpeedDown = -0.3;
   }
+
   public static class OperatorConstants {
     public static final int kDriverControllerPort1 = 0;
     public static final int kDriverControllerPort2 = 1;
