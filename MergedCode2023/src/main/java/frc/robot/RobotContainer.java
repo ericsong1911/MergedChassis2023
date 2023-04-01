@@ -65,7 +65,10 @@ public class RobotContainer {
     m_driverController1.a()
       .whileTrue(m_elevator.lower())
       .onFalse(m_elevator.stopCmd());
-
+    
+    m_driverController1.rightBumper()
+      .onTrue(m_drive.driveToChargeStationCmd(0.5));
+      
     m_driverController2.b()
       .whileTrue(m_intakeArm.turnUp())
       .onFalse(m_intakeArm.stopCmd());
@@ -73,9 +76,13 @@ public class RobotContainer {
       .whileTrue(m_intakeArm.turnDown())
       .onFalse(m_intakeArm.stopCmd());
     m_driverController2.x()
+      .onTrue(m_elevator.setHeight(0))
+      .onTrue(m_intakeArm.rotateToAngle(0))
       .onTrue(m_intakeWheels.grabCone());
     m_driverController2.y()
-      .onTrue(m_intakeWheels.releaseCone());
+      .onTrue(m_elevator.setHeight(0))
+      .onTrue(m_intakeArm.rotateToAngle(0))
+      .onTrue(m_intakeWheels.grabCube());
 
     //TODO: Map joystick controls to other components of the robot
     m_drive.setDefaultCommand(new RunCommand(
