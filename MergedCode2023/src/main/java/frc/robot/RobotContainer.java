@@ -66,10 +66,14 @@ public class RobotContainer {
       .whileTrue(m_elevator.lower())
       .onFalse(m_elevator.stopCmd());
     
-    m_driverController1.rightBumper()
-      .onTrue(m_drive.driveToChargeStationCmd(0.5));
-
-    //TODO: Map joystick controls to other components of the robot
+    m_driverController2.leftBumper()
+      .whileTrue(m_intakeWheels.grabCone());
+    m_driverController2.rightBumper()
+      .whileTrue(m_intakeWheels.grabCube());
+    
+    m_driverController2.start()
+      .onTrue(m_elevator.lowerToHeight(0), m_intake.setPosition(0));
+    //TODO: Map joystick controls to other components of the robot (elevator and sliding intake)
     m_drive.setDefaultCommand(new RunCommand(
       () -> 
         m_drive.driveArcade(
