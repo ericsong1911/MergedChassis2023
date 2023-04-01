@@ -24,12 +24,13 @@ import frc.robot.subsystems.DriveTrain;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
+  //Initialize different subsystems
   private final DriveTrain m_drive = new DriveTrain();
   private final Elevator m_elevator = new Elevator();
   private final IntakeArm m_intakeArm = new IntakeArm();
   private final IntakeWheels m_intakeWheels = new IntakeWheels();
 
-  //Autonomous stuffs
+  //Autonomous commands
   private final Command m_moveForwardAuto = Autos.moveForwardAuto(m_drive);
   private final Command m_chargingStationAuto = Autos.chargingStationAuto(m_drive);
 
@@ -45,7 +46,7 @@ public class RobotContainer {
     // Configure the trigger bindings
     configureBindings();
 
-    //Autonomous code
+    //Autonomous opetions in driver station
     m_chooser.setDefaultOption("Move Forward", m_moveForwardAuto);
     m_chooser.addOption("Dock at Charging Station", m_chargingStationAuto);
   }
@@ -56,7 +57,8 @@ public class RobotContainer {
     
     new Trigger(m_intakeArm::armIsNotsafe)
         .onTrue(m_intakeArm.stopCmd());
-
+    
+    //TODO: Remap button bindings to be in line with document. (TRIGGERS ARE CODED DIFFERENTLY)
     m_driverController1.b()
       .whileTrue(m_elevator.raise())
       .onFalse(m_elevator.stopCmd());
@@ -75,6 +77,7 @@ public class RobotContainer {
     m_driverController2.y()
       .onTrue(m_intakeWheels.releaseCone());
 
+    //TODO: Map joystick controls to other components of the robot
     m_drive.setDefaultCommand(new RunCommand(
       () -> 
         m_drive.driveArcade(
