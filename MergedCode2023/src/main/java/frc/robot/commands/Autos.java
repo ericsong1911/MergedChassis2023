@@ -14,6 +14,10 @@ public final class Autos {
     return drive.driveDistanceCommand(36, 0.5);
   }
 
+  public static Command chargingStationAuto(DriveTrain drive) {
+    return drive.driveToChargeStationCmd(0.5);
+  }
+
   private Autos() {
     throw new UnsupportedOperationException("This is a utility class!");
   }
