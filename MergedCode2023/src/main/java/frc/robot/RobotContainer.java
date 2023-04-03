@@ -72,7 +72,8 @@ public class RobotContainer {
       .whileTrue(m_intakeWheels.grabCube());
     
     m_driverController2.start()
-      .onTrue(m_elevator.lowerToHeight(0), m_intake.setPosition(0));
+      .onTrue(m_elevator.lowerToHeight(0))
+      .onTrue(m_intake.setPosition(0));
     //TODO: Map joystick controls to other components of the robot (elevator and sliding intake)
     m_drive.setDefaultCommand(new RunCommand(
       () -> 
