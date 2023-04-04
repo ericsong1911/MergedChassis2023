@@ -31,7 +31,7 @@ public final class Constants {
     // **************************************************************
     //  IMPORTANT! TODO: CHANGE GEAR RATIOS/VERIFY SAFE DISTANCE
     // **************************************************************
-    public static final double kIntakeGearRatio = 1;
+    public static final double kIntakeGearRatio = 12;
     public static final double kPositionFactor = Math.PI * 1.29 * kIntakeGearRatio;
     // kVelocityFactor converts Motor-RPM (Revolutions Per Minute) into  inches-per-second
     public static final double kVelocityFactor = kPositionFactor / 60;
@@ -91,8 +91,8 @@ public final class Constants {
     public static final double kVelocityFactor = kPositionFactor / 60;
 
     public static final double kMinTravelInInches = 0;
-    public static final double kMaxTravelInInches = 36; // TODO:  Verify with experimentation
-    public static final double kToleranceInInches = 1.8; // 5% of travel length
+    public static final double kMaxTravelInInches = 34; // TODO:  Verify with experimentation
+    public static final double kToleranceInInches = 1.7; // 5% of travel length
     public static final double kElevatorSpeedUp = 0.7;
     public static final double kElevatorSpeedDown = -0.3;
   }

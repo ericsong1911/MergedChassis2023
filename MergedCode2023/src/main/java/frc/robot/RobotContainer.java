@@ -58,13 +58,31 @@ public class RobotContainer {
     new Trigger(m_intake::intakeIsNotSafe)
         .onTrue(m_intake.stopCmd());
     
+    new Trigger(() -> m_driverController2.getLeftY()>.7) 
+        .whileTrue(() -> m_elevator.raise())
+        .onFalse(() -> m_elevator.stopCmd());
+    new Trigger(() -> m_driverController2.getLeftY()<-.7) 
+        .whileTrue(() -> m_elevator.lower())
+        .onFalse(() -> m_elevator.stopCmd());
+        
+/*    new Trigger(() -> m_driverController2.getRightX()>.7)
+        .whileTrue(() -> m_intake.out())
+        .onFalse(() -> m_intake.stopCmd());
+    new Trigger(() -> m_driverController2.getRightX()<-.7)
+        .whileTrue(() -> m_intake.in())
+        .onFalse(() -> m_intake.stopCmd());
+*/
+
     //TODO: Remap button bindings to be in line with document. (TRIGGERS ARE CODED DIFFERENTLY)
+    m_driverController1.a()
+      .onTrue(m_elevator.raiseToHeight(34))
+      .onTrue(m_intake.outToPosition(45))
+      .onFalse(m_elevator.stopCmd());
+    
     m_driverController1.b()
       .whileTrue(m_elevator.raise())
       .onFalse(m_elevator.stopCmd());
-    m_driverController1.a()
-      .whileTrue(m_elevator.lower())
-      .onFalse(m_elevator.stopCmd());
+
     
     m_driverController2.leftBumper()
       .whileTrue(m_intakeWheels.grabCone());
