@@ -5,7 +5,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
+//import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -17,14 +17,14 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeWheels extends SubsystemBase {
   private CANSparkMax m_motor;
-  private RelativeEncoder m_encoder;
+  //private RelativeEncoder m_encoder;
   /** Creates a new IntakeWheels. */
   public IntakeWheels() {
     m_motor = new CANSparkMax(CAN_IDs.intakeWheels, MotorType.kBrushless);
     m_motor.setInverted(IntakeWheelsConstants.kWheelsInverted);
     m_motor.setIdleMode(IdleMode.kBrake);
     m_motor.setSmartCurrentLimit(IntakeWheelsConstants.kCurrentLimit);
-    m_encoder = m_motor.getEncoder();
+    //m_encoder = m_motor.getEncoder();
 
     SmartDashboard.putData(this);
   }

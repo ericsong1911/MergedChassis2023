@@ -59,18 +59,18 @@ public class RobotContainer {
         .onTrue(m_intake.stopCmd());
     
     new Trigger(() -> m_driverController2.getLeftY()>.7) 
-        .whileTrue(() -> m_elevator.raise())
-        .onFalse(() -> m_elevator.stopCmd());
+        .whileTrue(m_elevator.raise())
+        .onFalse(m_elevator.stopCmd());
     new Trigger(() -> m_driverController2.getLeftY()<-.7) 
-        .whileTrue(() -> m_elevator.lower())
-        .onFalse(() -> m_elevator.stopCmd());
+        .whileTrue(m_elevator.lower())
+        .onFalse(m_elevator.stopCmd());
         
 /*    new Trigger(() -> m_driverController2.getRightX()>.7)
-        .whileTrue(() -> m_intake.out())
-        .onFalse(() -> m_intake.stopCmd());
+        .whileTrue(m_intake.out())
+        .onFalse(m_intake.stopCmd());
     new Trigger(() -> m_driverController2.getRightX()<-.7)
-        .whileTrue(() -> m_intake.in())
-        .onFalse(() -> m_intake.stopCmd());
+        .whileTrue(m_intake.in())
+        .onFalse(m_intake.stopCmd());
 */
 
     //TODO: Remap button bindings to be in line with document. (TRIGGERS ARE CODED DIFFERENTLY)
