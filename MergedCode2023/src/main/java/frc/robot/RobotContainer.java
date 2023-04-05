@@ -74,19 +74,61 @@ public class RobotContainer {
 */
 
     //TODO: Remap button bindings to be in line with document. (TRIGGERS ARE CODED DIFFERENTLY)
+    m_driverController1.rightBumper()
+      .onTrue(m_drive.driveToChargeStationCmd(.3));
+
     m_driverController1.a()
       .onTrue(m_elevator.raiseToHeight(34))
       .onTrue(m_intake.outToPosition(45))
-      .onFalse(m_elevator.stopCmd());
+      .onFalse(m_elevator.stopCmd())
+      .onFalse(m_intake.stopCmd());
     
     m_driverController1.b()
-      .whileTrue(m_elevator.raise())
-      .onFalse(m_elevator.stopCmd());
-
+      .onTrue(m_elevator.raiseToHeight(34))
+      .onTrue(m_intake.outToPosition(45))
+      .onFalse(m_elevator.stopCmd())
+      .onFalse(m_intake.stopCmd());
     
-    m_driverController2.leftBumper()
+    m_driverController1.x()
+      .onTrue(m_elevator.raiseToHeight(24))
+      .onTrue(m_intake.outToPosition(36))
+      .onFalse(m_elevator.stopCmd())
+      .onFalse(m_intake.stopCmd());
+    
+    m_driverController1.y()
+      .onTrue(m_elevator.raiseToHeight(24))
+      .onTrue(m_intake.outToPosition(36))
+      .onFalse(m_elevator.stopCmd())
+      .onFalse(m_intake.stopCmd());
+      
+    m_driverController2.a()
+      .onTrue(m_elevator.raiseToHeight(30))
+      .onTrue(m_intake.outToPosition(10))
+      .onFalse(m_elevator.stopCmd())
+      .onFalse(m_intake.stopCmd());
+    
+    m_driverController2.b()
+      .onTrue(m_elevator.raiseToHeight(30))
+      .onTrue(m_intake.outToPosition(10))
+      .onFalse(m_elevator.stopCmd())
+      .onFalse(m_intake.stopCmd());
+    
+    m_driverController2.x()
+      .onTrue(m_elevator.lowerToHeight(0))
+      .onTrue(m_intake.outToPosition(10))
+      .onFalse(m_elevator.stopCmd())
+      .onFalse(m_intake.stopCmd());
+    
+    m_driverController2.y()
+      .onTrue(m_elevator.lowerToHeight(0))
+      .onTrue(m_intake.outToPosition(0))
+      .onFalse(m_elevator.stopCmd())
+      .onFalse(m_intake.stopCmd());
+    
+      m_driverController2.leftBumper()
       .whileTrue(m_intakeWheels.grabCone());
-    m_driverController2.rightBumper()
+    
+      m_driverController2.rightBumper()
       .whileTrue(m_intakeWheels.grabCube());
     
     m_driverController2.start()
