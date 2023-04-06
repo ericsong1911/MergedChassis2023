@@ -14,6 +14,9 @@ package frc.robot;
  */
 public final class Constants {
   public static class CAN_IDs {
+    // **************************************************************
+    //  IMPORTANT! TODO: VERIFY MOTOR IDS
+    // **************************************************************
     public static final int driveTrain_Left1 = 11;
     public static final int driveTrain_Left2 = 12;
     public static final int driveTrain_Right1 = 13;
@@ -28,18 +31,15 @@ public final class Constants {
   public static class IntakeConstants {
     public static final boolean kMotorInverted = false;
     public static final int kCurrentLimit = 40;
-    // **************************************************************
-    //  IMPORTANT! TODO: CHANGE GEAR RATIOS/VERIFY SAFE DISTANCE
-    // **************************************************************
-    public static final double kIntakeGearRatio = 12;
+    //Make sure these constants are correct!
+    public static final double kIntakeGearRatio = 1 / 12; //12 seems to be incorrect, perhaps you meant 1/12
     public static final double kPositionFactor = Math.PI * 1.29 * kIntakeGearRatio;
     // kVelocityFactor converts Motor-RPM (Revolutions Per Minute) into  inches-per-second
     public static final double kVelocityFactor = kPositionFactor / 60;
 
     public static final double kMinTravelInInches = 0;
-    public static final double kMaxTravelInInches = 36;
-    public static final double kToleranceInInches = 1; //TODO: Change to 5% of travel length
-
+    public static final double kMaxTravelInInches = 36; //DOUBLE CHECK!!
+    public static final double kToleranceInInches = 1.8; //5% of travel length
     public static final double kIntakeSpeedIn = -0.5;
     public static final double kIntakeSpeedOut = 0.5;
 
