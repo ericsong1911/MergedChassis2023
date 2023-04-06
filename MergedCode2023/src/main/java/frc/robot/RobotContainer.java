@@ -79,51 +79,35 @@ public class RobotContainer {
 
     m_driverController1.a()
       .onTrue(m_elevator.raiseToHeight(34))
-      .onTrue(m_intake.outToPosition(45))
-      .onFalse(m_elevator.stopCmd())
-      .onFalse(m_intake.stopCmd());
+      .onTrue(m_intake.outToPosition(45));
     
     m_driverController1.b()
       .onTrue(m_elevator.raiseToHeight(34))
-      .onTrue(m_intake.outToPosition(45))
-      .onFalse(m_elevator.stopCmd())
-      .onFalse(m_intake.stopCmd());
+      .onTrue(m_intake.outToPosition(45));
     
     m_driverController1.x()
       .onTrue(m_elevator.raiseToHeight(24))
-      .onTrue(m_intake.outToPosition(36))
-      .onFalse(m_elevator.stopCmd())
-      .onFalse(m_intake.stopCmd());
+      .onTrue(m_intake.outToPosition(36));
     
     m_driverController1.y()
       .onTrue(m_elevator.raiseToHeight(24))
-      .onTrue(m_intake.outToPosition(36))
-      .onFalse(m_elevator.stopCmd())
-      .onFalse(m_intake.stopCmd());
+      .onTrue(m_intake.outToPosition(36));
       
     m_driverController2.a()
       .onTrue(m_elevator.raiseToHeight(30))
-      .onTrue(m_intake.outToPosition(10))
-      .onFalse(m_elevator.stopCmd())
-      .onFalse(m_intake.stopCmd());
+      .onTrue(m_intake.outToPosition(10));
     
     m_driverController2.b()
       .onTrue(m_elevator.raiseToHeight(30))
-      .onTrue(m_intake.outToPosition(10))
-      .onFalse(m_elevator.stopCmd())
-      .onFalse(m_intake.stopCmd());
+      .onTrue(m_intake.outToPosition(10));
     
     m_driverController2.x()
       .onTrue(m_elevator.lowerToHeight(0))
-      .onTrue(m_intake.outToPosition(10))
-      .onFalse(m_elevator.stopCmd())
-      .onFalse(m_intake.stopCmd());
+      .onTrue(m_intake.outToPosition(10));
     
     m_driverController2.y()
       .onTrue(m_elevator.lowerToHeight(0))
-      .onTrue(m_intake.outToPosition(0))
-      .onFalse(m_elevator.stopCmd())
-      .onFalse(m_intake.stopCmd());
+      .onTrue(m_intake.outToPosition(0));
     
       m_driverController2.leftBumper()
       .whileTrue(m_intakeWheels.grabCone());
